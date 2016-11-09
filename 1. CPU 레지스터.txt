@@ -1,0 +1,73 @@
+# 범용 레지스터
+- EAX ( Extended Accumulator Register )
+	곱셈과 나눗셈 명령에서 자동으로 사용되고, 함수의 리턴 값이 저장되는 용도로도 사용된다.
+
+- EBX ( Extended Base Register )
+	ESI와 EDI와 결합하여 인덱스에 사용된다.
+
+- ECX ( Extended Counter Register )
+	반복 명령어 사용시 반복 카운터로 사용된다. ECX 레지스터에 반복할 횟수를 지정해 놓고 반복 작업을 수행하게 된다.
+
+- EDX ( Extended Data Register )
+	EAX와 같이 쓰이며 부호 확장 명령 등에 쓰인다.
+
+- ESI ( Extended Source Index )
+	데이터 복사나 조작시, Source Data의 주소가 저장된다. ESI 레지스터가 가리키는 주소의 데이터를 EDI 레지스터가 가리키는 주소로 복사하는 용도로 많이 사용된다.
+
+- EDI ( Extended Destination Index )
+	복사 작업 시 Destination의 주소가 저장된다. 주로 ESI 레지스터가 가리키는 주소의 데이터가 복사된다.
+	
+- ESP ( Extended Stack Pointer )
+	하나의 스택 프레임의 끝 지점 주소가 저장된다. PUSH, POP 명령어에 따라서 ESP의 값이 4Byte씩 변한다.
+
+- EBP ( Extended Base Pointer )
+	하나의 스택 프레임의 시작 지점 주소가 저장된다. 현재 사용되는 스택 프레임이 소멸되지 않는 동안 EBP의 값은 변하지 않는다.
+		현재 스택 프레임이 소멸되면 이 전에 사용되던 스택 프레임을 가리키게 된다.
+
+	* 32Bit					& 12345678
+		EAX, EBX, ECX, EDX
+	* 16Bit					& 00005678
+		AX, BX, CX, DX
+	* 상위 8Bit (High)		& 00005600
+		AH, BH, CH, DH
+	* 하위 8Bit (Low)		& 00000034
+		Al, BL, CL, DL
+			
+			* 32Bit
+				ESI, EDI, EBP, ESP
+			* 16Bit
+				Si, DI, BP, SP
+
+# 명령 포인터
+- EIP ( Extended Instruction Pointer )
+	다음에 실행해야 할 명령어가 존재하는 메모리 주소가 저장된다. 현재 명령어를 실행 완료한 후에 EIP 레지스터에 저장되어 있는 주소에 위치한 명령어를 실행하게 된다. 
+		실행 전 EIP 레지스터에는 다음 실행해야 할 명령어가 존재하는 주소의 값이 저장된다.
+
+# 세그먼트 레지스터
+- CS ( Code Segment )
+	실행 가능한 명령어가 존재하는 세그먼트의 오프셋이 저장된다.
+
+- DS ( Data Segment ) 
+	프로그램에서 사용되는 데이터가 존재하는 세그먼트의 오프셋이 저장된다.
+
+- SS ( Stack Segment )
+	스택에 존재하는 세그먼트의 오프셋이 저장된다.
+
+# 플래그 레지스터
+- CF ( Carry Flag )  
+	부호 없는 연산 결과가 용량보다 클 때 세트(1)이 된다.
+
+- ZF ( Zero Flag )
+	연산 결과가 0일 때 세트(1) 된다. 연산 결과가 0이 아닐 때 해체(0)된다.
+
+- OF ( Overflow Flag )
+	부호 있는 연산 결과가 용량보다 클 때 세트(1)된다.
+
+- SF ( Sign Flag )
+	연산 결과가 음수가 되었을 때 세트(1)된다. 연산 결과가 양수가 되었을 때 해체(0) 된다.
+
+- DF ( Direction Flag )
+	문자열 처리에서 연속되는 문자열의 처리 방향에 따라 세트(1)된다.
+
+# 부동 소수점 레지스터
+	ST(0), ST(1), ST(2), ST(3), ST(4), ST(5), ST(6), ST(7)
