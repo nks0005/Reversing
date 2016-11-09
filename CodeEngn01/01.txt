@@ -1,0 +1,11 @@
+CD-ROM을 인식하지 못해도, CD-ROM 인식했다는 메세지 박스가 출력되는 곳으로 가는 방법
+
+1. JMP 00401021를 JMP 0040103B로 수정
+2. Call <JMP.&KERNEL32.GetDriveTypeA>가 EAX를 3반환하였음.
+INC ESI
+DEC EAX 
+INC ESI
+INC ESI
+DEC EAX
+> ESI은 +3, EAX는 -2
+CMP EAX,ES 될때 EAX의 값은 1이 됨. 하지만 프로그램 에러인지 ESI값이 00401000으로 되어있음. 결론, ESI값이 +3일때 1이되는 값 : FFFFFFFE가 되어야 함.
